@@ -38,3 +38,4 @@ public class Lesson1_Task1 {
         System.out.println("max= " + max + " min= " + min + " average= " + sum);
     }
 }
+// Created by Alexandr Kudinov on 16.10.19

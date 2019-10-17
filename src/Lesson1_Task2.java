@@ -27,3 +27,4 @@ public class Lesson1_Task2 {
         System.out.println("sum= " + sum);
     }
 }
+// Created by Alexandr Kudinov on 16.10.19

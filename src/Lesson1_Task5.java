@@ -1,15 +1,13 @@
-
 /*
 Задание:
-Заполните массив случайным числами и отсортируйте его.
-Используйте сортировку пузырьком.
-
+    Заполните массив случайным числами и отсортируйте его.
+    Используйте сортировку вставками.
 */
 
 
 import java.util.Scanner;
 
-public class Lesson1_Task3 {
+public class Lesson1_Task5 {
     public static void main(String[] args) {
         Scanner arraylength = new Scanner(System.in);
         System.out.println("enter the number of array:");
@@ -20,23 +18,24 @@ public class Lesson1_Task3 {
             array[i] = Math.random();
             System.out.println(i + ":   " + array[i]);
         }
+        for(int i =1;i<array.length;i++){
+            double temp=array[i];
+            int j =i-1;
+            while (array[j]<temp && j>=0){
 
-        for(int i=0;i<n-1;i++){
-            if(array[i]>array[i+1]){
-                double temp = array[i];
-                array[i]=array[i+1];
-                array[i+1]=temp;
-            }
-            if(i==n-2){
-                i=-1;
-                n=n-1;
-            }
+                array[j+1]=array[j];
+                j--;
+              }
+            array[j+1]=temp;
         }
 
         System.out.println();
-        for (int i = 0; i < array.length; i++) {
+        for (int i = 0; i < n; i++) {
             System.out.println(i + ":   " + array[i]);
         }
+
+        }
+
+
     }
-}
-// Created by Alexandr Kudinov on 16.10.19
+// Created by Alexandr Kudinov on 17.10.19
