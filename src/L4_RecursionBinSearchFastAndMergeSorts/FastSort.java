@@ -79,8 +79,4 @@ class MyFastSort {
 }
 
 
-class FastSort1 {
-
-}
-
 
