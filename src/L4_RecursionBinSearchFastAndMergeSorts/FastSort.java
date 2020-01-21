@@ -9,13 +9,13 @@ package L4_RecursionBinSearchFastAndMergeSorts;
 public class FastSort {
     public static void main(String[] args) {
 
-        double[] array = {3, 7, 8, 5, 2, 1, 9, 5, 4};
+        int[] array = {3, 7, 8, 5, 2, 1, 9, 5, 4};
 
         for (int i = 0; i < array.length; i++) {
             System.out.print(array[i] + "   ");
         }
 
-        MyFastSort.quickSort(array, 0, array.length - 1);
+        FSo.sort(array, 0, array.length - 1);
         System.out.println();
         for (int i = 0; i < array.length; i++) {
             System.out.print(array[i] + "   ");
@@ -24,59 +24,43 @@ public class FastSort {
 }
 
 
-class MyFastSort {
-
-    private double[] array;
-
-    public MyFastSort(double[] array) {
-        this.array = array;
-    }
-
-    public static void quickSort(double[] array, int low, int high) {
-
+class FSo {
+    public static void sort(int[] array, int start, int stop) {
         if (array.length == 0) {
-            return;         //завершить выполнение если длина массива равна 0
+            return;
         }
-        if (low >= high) {
-            return;         //завершить выполнение если уже нечего делить
-        }
+        int tmp;
+        int mid = start + (stop - start) / 2;
+        int madA = array[mid];
+        int i = start;
+        int j = stop;
 
 
-        int middle = low + (high - low) / 2;
-        double base = array[middle];        // выбрать опорный элемент
-
-        // разделить на подмассивы, который больше и меньше опорного элемента
-        int i = low, j = high;
         while (i <= j) {
-
-            while (array[i] < base) {
+            while (array[i] < madA) {
                 i++;
             }
-
-            while (array[j] > base) {
+            while (array[j] > madA) {
                 j--;
             }
 
-            if (i <= j) {//меняем местами
-                double temp = array[i];
+            if (i <= j) {
+                tmp = array[i];
                 array[i] = array[j];
-                array[j] = temp;
-
-                ++i;
-                --j;
+                array[j] = tmp;
+                i++;
+                j--;
             }
         }
 
-        if (low < j) {
-            quickSort(array, low, j);
+        if(i<stop){
+            sort(array,i,stop);
         }
-
-        if (high > i) {
-            quickSort(array, i, high);
+        if(j>start){
+            sort(array,start,j);
         }
     }
 
+
 }
-
-
 

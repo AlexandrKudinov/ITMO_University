@@ -6,6 +6,7 @@ Generator для получения нового значения по инде�
  */
 
 public class Task4{
+    /*
 public static void main(String[] args) {
      final Shape[] shapes = new Shape[]{
             new Ball(44),
@@ -43,5 +44,7 @@ class Fill {
         }
         return objects;
     }
+
+     */
 }
 

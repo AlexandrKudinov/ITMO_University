@@ -1,57 +1,58 @@
 package L4_RecursionBinSearchFastAndMergeSorts;
 
 import java.lang.reflect.Array;
+import java.util.ArrayList;
 
 public class MyMergeSort {
     public static void main(String[] args) {
         int[] a = {1, 2, 5, 4, 3, 2, 3, 44, 55, 66, 77, 88, 66, 55, 44, 3333, 2, 3, 4, 3, 5, -111111111};
 
-        for (int i : mergeSort(a, a.length)) {
+        for (int i : MS.sort(a, a.length)) {
             System.out.println(i);
         }
     }
 
+}
 
 
-    public static int[] mergeSort(int[] array, int arrayLength) {
-        if (arrayLength < 2) {
+
+class MS {
+    public static int[] sort(int[] array, int length) {
+        if (length < 2) {
             return array;
         }
-        int middle = arrayLength / 2;
-        int[] leftArray = new int[middle];
-        int[] rightArray = new int[arrayLength - middle];
+        int mid = length / 2;
+        int[] leftArr = new int[mid];
+        int[] rightArr = new int[length - mid];
 
-        for (int i = 0; i < middle; i++) {
-            leftArray[i] = array[i];
+        for (int i = 0; i < mid; i++) {
+            leftArr[i] = array[i];
         }
-        for (int i = middle; i < arrayLength; i++) {
-            rightArray[i - middle] = array[i];
+
+        for (int i = mid; i < length; i++) {
+            rightArr[i - mid] = array[i];
         }
-        mergeSort(leftArray, middle);
-        mergeSort(rightArray, arrayLength - middle);
-        mergeUnion(array, leftArray, rightArray, middle, arrayLength - middle);
+        sort(leftArr, mid);
+        sort(rightArr, length - mid);
+        union(array, leftArr, rightArr, mid, length - mid);
         return array;
     }
 
-
-    public  static void mergeUnion(int[] array,
-                           int[] leftArray,
-                           int[] rightArray,
-                           int leftLength,
-                           int rightLength) {
+    private static void union(int[] array, int[] leftArr, int[] rightArr, int leftLength, int rightLength) {
         int i = 0, j = 0, k = 0;
         while (i < leftLength && j < rightLength) {
-            if (leftArray[i] < rightArray[j]) {
-                array[k++] = leftArray[i++];
+            if (leftArr[i] < rightArr[j]) {
+                array[k++] = leftArr[i++];
             } else {
-                array[k++] = rightArray[j++];
+                array[k++] = rightArr[j++];
             }
         }
         while (i < leftLength) {
-            array[k++] = leftArray[i++];
+            array[k++] = leftArr[i++];
         }
         while (j < rightLength) {
-            array[k++] = rightArray[j++];
+            array[k++] = rightArr[j++];
         }
     }
+
 }

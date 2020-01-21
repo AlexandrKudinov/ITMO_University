@@ -25,9 +25,25 @@ public class MyLinkedList {
         list.remove(3);
         System.out.println(list.toString());
         System.out.println(list.getSize());
+
+
+        List list1 = new List();
+        list1.add(23);
+        list1.add(22);
+        list1.add(223);
+        list1.add(123123);
+        list1.add(1234);
+        System.out.println(list1);
+        System.out.println(list1.getSize());
+        list1.remove(0);
+        System.out.println(list1);
+        System.out.println(list1.get(0));
+        System.out.println(list1.getSize());
+        list1.remove(list1.getSize()-1);
+        System.out.println(list1);
+        System.out.println(list1.getSize());
     }
 }
-
 
 
 class MyList {
@@ -90,7 +106,7 @@ class MyList {
     public static void remove(int index) {
         if (index == 0) {
             first = first.getNextNode();
-        }else {
+        } else {
             Node node = getNode(index - 1);
             node.setNextNode(getNode(index).getNextNode());
         }
@@ -108,11 +124,105 @@ class MyList {
             stringBuilder.append(node.getValue() + " , ");
             node = node.getNextNode();
         }
-        return stringBuilder.delete(stringBuilder.length()-3, stringBuilder.length() - 1).toString();
+        return stringBuilder.delete(stringBuilder.length() - 3, stringBuilder.length() - 1).toString();
     }
 
 }
 
+
+class List {
+
+    @Override
+    public String toString() {
+        StringBuilder stringBuilder = new StringBuilder();
+        Node node = first;
+        while (node != null) {
+            stringBuilder.append(node);
+            stringBuilder.append(" ");
+            node = node.getNextNode();
+        }
+        return stringBuilder.toString();
+    }
+
+    private class Node {
+        private Node nextNode;
+        private int value;
+
+        public Node(int value) {
+            this.value = value;
+        }
+
+        public int getValue() {
+            return value;
+        }
+
+        public void setValue(int value) {
+            this.value = value;
+        }
+
+        public Node getNextNode() {
+            return nextNode;
+        }
+
+        public void setNextNode(Node nextNode) {
+            this.nextNode = nextNode;
+        }
+
+        @Override
+        public String toString() {
+            return String.valueOf(value);
+        }
+    }
+
+    private Node current;
+    private Node first;
+    private int size;
+
+    public void add(int value) {
+        if (first == null) {
+            first = new Node(value);
+            current = first;
+        } else {
+            Node node = new Node(value);
+            current.setNextNode(node);
+            current = current.getNextNode();
+        }
+        size++;
+    }
+
+    private Node getNode(int index) {
+        int i = 0;
+        Node node = first;
+        while (i++ < index) {
+            node = node.getNextNode();
+        }
+        return node;
+    }
+
+    public int get(int index) {
+        return getNode(index).value;
+    }
+
+    public int getSize() {
+        return size;
+    }
+
+
+    public void remove(int index) {
+        if (index < 0 || index > size) {
+            throw new NullPointerException();
+        }
+        if(index==0){
+            first = first.getNextNode();
+        }
+        Node node = getNode(index - 1);
+        Node node1 = getNode(index+1);
+        node.setNextNode(node1);
+        size--;
+    }
+
+
+}
 
 
 
